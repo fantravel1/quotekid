@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get inspired with QuoteKid - A collection of fun and inspirational quotes for kids and the young at heart!">
+    <title>QuoteKid - Fun & Inspirational Quotes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        /* Easter Egg Mascot Styles */
+        .easter-egg-mascot {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: #4DA8DA;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+            border: 3px solid #fff;
+        }
+        
+        .easter-egg-mascot:hover {
+            transform: scale(1.1);
+            background: #3a8bc8;
+        }
+        
+        .mascot-icon {
+            font-size: 32px;
+            transition: transform 0.3s ease;
+        }
+        
+        .mascot-tooltip {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mascot-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        
+        .easter-egg-mascot:hover .mascot-tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: 70px;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .easter-egg-mascot {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .mascot-icon {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Quote<span>Kid</span></h1>
+                <div class="mascot">👦</div>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="daily.html">Quote of the Day</a></li>
+                    <li><a href="quiz.html">Quiz</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="container">
+                <div class="quote-container">
+                    <div class="mascot-speech">👋</div>
+                    <div class="quote-box">
+                        <p class="quote-text">Loading an awesome quote...</p>
+                        <p class="quote-author">QuoteKid</p>
+                    </div>
+                    <button id="new-quote" class="btn primary-btn">
+                        <span class="btn-icon">✨</span>
+                        Show Me Another!
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="container">
+                <h2>Explore Categories</h2>
+                <div class="category-grid">
+                    <a href="confidence.html" class="category-card" style="--accent: #4DA8DA;">
+                        <div class="category-icon">💪</div>
+                        <h3>Confidence</h3>
+                        <p>Be your own superhero!</p>
+                    </a>
+                    <a href="kindness.html" class="category-card" style="--accent: #6BD4CD;">
+                        <div class="category-icon">💖</div>
+                        <h3>Kindness</h3>
+                        <p>Spread love everywhere!</p>
+                    </a>
+                    <a href="humor.html" class="category-card" style="--accent: #FFD166;">
+                        <div class="category-icon">😂</div>
+                        <h3>Humor</h3>
+                        <p>Laugh out loud!</p>
+                    </a>
+                    <a href="wisdom.html" class="category-card" style="--accent: #FF6B6B;">
+                        <div class="category-icon">🧠</div>
+                        <h3>Wisdom</h3>
+                        <p>Words to live by</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made with ❤️ by QuoteKid - Bringing smiles one quote at a time!</p>
+            <p>© 2025 QuoteKid.com - All rights reserved</p>
+        </div>
+    </footer>
+
+    <div id="confetti-container"></div>
+    
+    <!-- Floating Mascot Button -->
+    <div id="easter-egg-mascot" class="easter-egg-mascot">
+        <div class="mascot-icon">👀</div>
+        <span class="mascot-tooltip">Click me 3 times!</span>
+    </div>
+    
+    <script src="js/quotes.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

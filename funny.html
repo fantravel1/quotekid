@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise! - QuoteKid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: #ffebee;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            color: #ff4081;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 #ffcdd2;
+            transform: rotate(-3deg);
+            animation: bounce 2s infinite;
+        }
+        
+        .mascot {
+            font-size: 8rem;
+            margin: 1rem 0;
+            display: inline-block;
+            animation: spin 4s linear infinite, float 3s ease-in-out infinite;
+        }
+        
+        .quote {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: rotate(-1deg);
+            border: 3px dashed #ff9800;
+        }
+        
+        .quote-text {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .quote-author {
+            font-size: 1.2rem;
+            color: #ff4081;
+            font-weight: bold;
+            font-style: italic;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ff4081;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 20px rgba(255, 64, 129, 0.6);
+            background: #f50057;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff4081;
+            opacity: 0;
+            animation: confetti 5s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-10px) rotate(-5deg); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes confetti {
+            0% { 
+                transform: translateY(-100vh) rotate(0deg); 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(720deg); 
+                opacity: 0;
+            }
+        }
+        
+        .floating-emoji {
+            position: fixed;
+            font-size: 2rem;
+            animation: float-up 10s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes float-up {
+            0% { 
+                transform: translateY(100vh) rotate(0deg) scale(0.5); 
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg) scale(1); 
+                opacity: 0;
+            }
+        }
+        
+        .hidden-message {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            display: none;
+            transform: rotate(1deg);
+            border: 2px solid #ff9800;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mascot {
+                font-size: 6rem;
+            }
+            
+            .quote-text {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Surprise! 🎉</h1>
+        <div class="mascot">🤪</div>
+        
+        <div class="quote">
+            <p class="quote-text">"Why don't scientists trust atoms? Because they make up everything!"</p>
+            <p class="quote-author">- The Funniest Atom</p>
+        </div>
+        
+        <button id="surpriseBtn" class="cta-button">Click for More Fun!</button>
+        
+        <div id="hiddenMessage" class="hidden-message">
+            <h3>You found the secret message! 🕵️‍♂️</h3>
+            <p>Thanks for exploring QuoteKid! Here's a virtual high-five! ✋</p>
+            <p>Share this page with a friend who needs a laugh! 😄</p>
+        </div>
+    </div>
+    
+    <script>
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff4081', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0'];
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = (Math.random() * 10 + 5) + 'px';
+            confetti.style.height = (Math.random() * 10 + 5) + 'px';
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+        
+        // Create floating emojis
+        function createFloatingEmoji() {
+            const emojis = ['😂', '🤣', '😆', '🎉', '✨', '🎊', '🤪', '😜', '🤩', '🥳'];
+            const emoji = document.createElement('div');
+            emoji.className = 'floating-emoji';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            emoji.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+            document.body.appendChild(emoji);
+            
+            setTimeout(() => {
+                emoji.remove();
+            }, 10000);
+        }
+        
+        // Button click event
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            // Show hidden message
+            const message = document.getElementById('hiddenMessage');
+            message.style.display = 'block';
+            
+            // Create confetti
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createConfetti, i * 100);
+            }
+            
+            // Create floating emojis
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createFloatingEmoji, i * 300);
+            }
+            
+            // Change button text
+            this.textContent = 'Woo! More Fun!';
+            this.style.transform = 'scale(1.1) rotate(5deg)';
+            
+            // Add dance animation to mascot
+            const mascot = document.querySelector('.mascot');
+            mascot.style.animation = 'dance 0.5s steps(4) infinite';
+            
+            // Add dance keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes dance {
+                    0% { transform: rotate(-10deg); }
+                    25% { transform: rotate(10deg); }
+                    50% { transform: rotate(-10deg); }
+                    75% { transform: rotate(10deg); }
+                    100% { transform: rotate(-10deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+        
+        // Initial confetti on page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(createConfetti, i * 100);
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
+

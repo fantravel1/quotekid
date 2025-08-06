@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get your daily dose of inspiration with QuoteKid's featured quote of the day. A new motivational quote every day!">
+    <title>Quote of the Day - QuoteKid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        /* Daily quote specific styles */
+        .daily-hero {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 209, 102, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border-radius: 16px;
+            margin: 2rem auto;
+            max-width: 1000px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .daily-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #4DA8DA, #FFD166, #6BD4CD, #FF6B6B);
+        }
+        
+        .daily-mascot {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+        
+        .daily-quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 2rem;
+        }
+        
+        .daily-quote-box {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 1rem 0 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        
+        .daily-quote-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .daily-quote-text {
+            font-size: 2rem;
+            line-height: 1.5;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-family: 'Baloo 2', cursive;
+            position: relative;
+            padding: 0 1.5rem;
+        }
+        
+        .daily-quote-text::before,
+        .daily-quote-text::after {
+            content: '"';
+            font-family: serif;
+            font-size: 5rem;
+            color: rgba(77, 168, 218, 0.1);
+            position: absolute;
+            line-height: 1;
+        }
+        
+        .daily-quote-text::before {
+            top: -1.5rem;
+            left: -1rem;
+        }
+        
+        .daily-quote-text::after {
+            bottom: -3rem;
+            right: 0;
+        }
+        
+        .daily-quote-author {
+            font-size: 1.3rem;
+            color: #4DA8DA;
+            font-weight: 500;
+            margin: 2rem 0 1rem;
+            font-style: italic;
+        }
+        
+        .fun-fact {
+            background: #f8f9fa;
+            border-left: 4px solid #FFD166;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 2rem 0 0;
+            font-size: 1rem;
+            color: #555;
+            text-align: left;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .fun-fact strong {
+            color: #333;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .share-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .btn-twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .btn-facebook {
+            background: #4267B2;
+            color: white;
+        }
+        
+        .btn-copy {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .daily-categories {
+            margin: 4rem 0;
+        }
+        
+        .daily-categories h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #4DA8DA;
+        }
+        
+        .category-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .category-link {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            color: #555;
+        }
+        
+        .category-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-link.confidence { border-color: #4DA8DA; color: #4DA8DA; }
+        .category-link.kindness { border-color: #6BD4CD; color: #6BD4CD; }
+        .category-link.humor { border-color: #FFD166; color: #E6A800; }
+        .category-link.wisdom { border-color: #FF6B6B; color: #FF6B6B; }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @media (max-width: 768px) {
+            .daily-quote-text {
+                font-size: 1.5rem;
+                padding: 0 1rem;
+            }
+            
+            .daily-quote-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .share-btn {
+                width: 80%;
+                justify-content: center;
+            }
+            
+            .category-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-link {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Quote<span>Kid</span></h1>
+                </a>
+                <div class="mascot">🌟</div>
+            </div>
+            <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="daily.html">Quote of the Day</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="daily-hero">
+                <div class="daily-mascot">🌟</div>
+                <h1>Quote of the Day</h1>
+                <p>Your daily dose of inspiration</p>
+                
+                <div class="daily-quote-container">
+                    <div class="daily-quote-box">
+                        <p class="daily-quote-text" id="dailyQuote">Loading today's quote...</p>
+                        <p class="daily-quote-author" id="dailyAuthor"></p>
+                        <div class="fun-fact" id="funFact"></div>
+                    </div>
+                    
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn btn-twitter" id="shareTwitter">
+                            <i>🐦</i> Share on Twitter
+                        </a>
+                        <a href="#" class="share-btn btn-facebook" id="shareFacebook">
+                            <i>👍</i> Share on Facebook
+                        </a>
+                        <button class="share-btn btn-copy" id="copyQuote">
+                            <i>📋</i> Copy Quote
+                        </button>
+                        <a href="#" class="share-btn btn-whatsapp" id="shareWhatsApp">
+                            <i>💬</i> Share on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="daily-categories">
+                <h2>Explore More Quotes</h2>
+                <p style="text-align: center; color: #666; max-width: 700px; margin: 0 auto 2rem;">
+                    Discover thousands of inspirational quotes in different categories
+                </p>
+                
+                <div class="category-links">
+                    <a href="confidence.html" class="category-link confidence">
+                        💪 Confidence
+                    </a>
+                    <a href="kindness.html" class="category-link kindness">
+                        💖 Kindness
+                    </a>
+                    <a href="humor.html" class="category-link humor">
+                        😂 Humor
+                    </a>
+                    <a href="wisdom.html" class="category-link wisdom">
+                        🧠 Wisdom
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made with ❤️ by QuoteKid - Inspiring you every day!</p>
+            <p>© 2025 QuoteKid.com - All rights reserved</p>
+        </div>
+    </footer>
+
+    <div id="confetti-container"></div>
+    
+    <script src="js/quotes.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get today's quote
+            const quote = getQuoteOfTheDay();
+            const funFact = getFunFact();
+            
+            // Update the DOM
+            document.getElementById('dailyQuote').textContent = `"${quote.text}"`;
+            document.getElementById('dailyAuthor').textContent = `— ${quote.author}`;
+            document.getElementById('funFact').innerHTML = `✨ <strong>Did you know?</strong> ${funFact}`;
+            
+            // Set up share buttons
+            const shareText = encodeURIComponent(`"${quote.text}" — ${quote.author} #QuoteOfTheDay #Inspiration`);
+            const shareUrl = encodeURIComponent(window.location.href);
+            
+            // Twitter share
+            document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+            
+            // Facebook share
+            document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareText}`;
+            
+            // WhatsApp share
+            document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${shareText}%20${shareUrl}`;
+            
+            // Copy to clipboard
+            document.getElementById('copyQuote').addEventListener('click', function() {
+                navigator.clipboard.writeText(`"${quote.text}" — ${quote.author}`).then(() => {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i>✅</i> Copied!';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                });
+            });
+            
+            // Open share links in a new tab
+            document.querySelectorAll('a[href^="http"]').forEach(link => {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+        });
+    </script>
+</body>
+</html>
+

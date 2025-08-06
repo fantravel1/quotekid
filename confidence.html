@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boost your confidence with these empowering quotes. Feel strong, capable, and ready to take on the world!">
+    <title>Confidence Quotes - QuoteKid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        /* Category-specific styles */
+        .category-header {
+            background: linear-gradient(135deg, rgba(77, 168, 218, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .category-header h1 {
+            color: #4DA8DA;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .category-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            padding: 0.5rem 1.2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #4DA8DA;
+            color: white;
+            border-color: #4DA8DA;
+            transform: translateY(-2px);
+        }
+        
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+        
+        .quote-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid #4DA8DA;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        
+        .quote-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(77, 168, 218, 0.15);
+        }
+        
+        .quote-card-content {
+            margin-bottom: 1.2rem;
+        }
+        
+        .quote-card-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .quote-card-author {
+            font-weight: 500;
+            color: #4DA8DA;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
+        .quote-card-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .copy-btn {
+            background: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+            color: #666;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #e0e0e0;
+            color: #333;
+        }
+        
+        .copy-icon {
+            font-size: 1rem;
+        }
+        
+        .copied-text {
+            display: none;
+            font-weight: 500;
+        }
+        
+        /* Modal styles */
+        .quote-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .quote-modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            border-top: 4px solid #4DA8DA;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .quote-modal-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-family: 'Baloo 2', cursive;
+        }
+        
+        .quote-modal-author {
+            font-size: 1.1rem;
+            color: #4DA8DA;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .quotes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 80%;
+                text-align: center;
+            }
+            
+            .quote-modal-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .quote-modal-text {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Quote<span>Kid</span></h1>
+                </a>
+                <div class="mascot">💪</div>
+            </div>
+            <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="daily.html">Quote of the Day</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="category-header">
+        <div class="container">
+            <h1>Confidence Quotes</h1>
+            <p>Feel strong, capable, and ready to take on the world with these empowering quotes that will boost your self-belief and courage.</p>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All Quotes</button>
+                <button class="filter-btn" data-filter="short">Short</button>
+                <button class="filter-btn" data-filter="medium">Medium</button>
+                <button class="filter-btn" data-filter="long">Long</button>
+            </div>
+            
+            <div class="quotes-grid" id="quotesGrid">
+                <!-- Quotes will be dynamically inserted here by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <div class="back-button-container">
+        <div class="container">
+            <a href="index.html" class="back-home-btn">
+                ← Back to Home
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made with ❤️ by QuoteKid - Boosting confidence one quote at a time!</p>
+            <p>© 2025 QuoteKid.com - All rights reserved</p>
+        </div>
+    </footer>
+    
+    <style>
+        .back-button-container {
+            padding: 1.5rem 0;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background-color: #4DA8DA;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(77, 168, 218, 0.3);
+        }
+        
+        .back-home-btn:hover {
+            background-color: #3a8bc8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(77, 168, 218, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .back-button-container {
+                padding: 1rem 0;
+            }
+            
+            .back-home-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+    </style>
+
+    <script src="js/quotes.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize the category page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all confidence quotes
+            const confidenceQuotes = getQuotesByCategory('confidence');
+            
+            // Display all quotes initially
+            displayQuotesGrid(confidenceQuotes, 'confidence');
+            
+            // Set up filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get filter type
+                    const filterType = this.getAttribute('data-filter');
+                    let filteredQuotes = [...confidenceQuotes];
+                    
+                    // Filter quotes based on length
+                    if (filterType === 'short') {
+                        filteredQuotes = confidenceQuotes.filter(quote => quote.text.length < 80);
+                    } else if (filterType === 'medium') {
+                        filteredQuotes = confidenceQuotes.filter(quote => quote.text.length >= 80 && quote.text.length < 150);
+                    } else if (filterType === 'long') {
+                        filteredQuotes = confidenceQuotes.filter(quote => quote.text.length >= 150);
+                    }
+                    
+                    // Display filtered quotes
+                    displayQuotesGrid(filteredQuotes, 'confidence');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

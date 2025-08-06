@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Personality Quiz - QuoteKid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .quiz-header h1 {
+            color: #4DA8DA;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .quiz-header p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .question-container {
+            display: none;
+            margin: 2rem 0;
+            text-align: left;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .question-container.active {
+            display: block;
+        }
+        
+        .question {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            padding: 0 1rem;
+        }
+        
+        .options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .option-btn {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+            border-color: #4DA8DA;
+        }
+        
+        .option-btn.selected {
+            background: #e3f2fd;
+            border-color: #4DA8DA;
+            color: #1976d2;
+            font-weight: 500;
+        }
+        
+        .option-btn .emoji {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .nav-btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .prev-btn {
+            background: #f5f5f5;
+            color: #666;
+        }
+        
+        .next-btn {
+            background: #4DA8DA;
+            color: white;
+        }
+        
+        .next-btn:hover:not(:disabled) {
+            background: #3a8bc8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+        
+        .prev-btn:hover:not(:disabled) {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .progress-container {
+            width: 100%;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 2rem 0;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4DA8DA, #6BD4CD);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .result-container {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .result-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: bounce 1s infinite alternate;
+        }
+        
+        .result-title {
+            font-size: 2.2rem;
+            color: #4DA8DA;
+            margin-bottom: 1rem;
+        }
+        
+        .result-description {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .result-btn {
+            background: #4DA8DA;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .result-btn:hover {
+            background: #3a8bc8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .quiz-header h1 {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .quiz-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Quote<span>Kid</span></h1>
+                </a>
+                <div class="mascot">🎯</div>
+            </div>
+            <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="daily.html">Quote of the Day</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="quiz-container">
+            <div class="quiz-header" id="quizHeader">
+                <h1>Quote Personality Quiz</h1>
+                <p>Answer a few questions to discover which type of quotes resonate most with your personality!</p>
+                <button id="startQuiz" class="result-btn">Start Quiz</button>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div id="quizQuestions">
+                <!-- Questions will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="result-container" id="resultContainer">
+                <div class="result-icon" id="resultIcon">🎉</div>
+                <h2 class="result-title" id="resultTitle">Your Quote Personality</h2>
+                <p class="result-description" id="resultDescription"></p>
+                <a href="#" class="result-btn" id="resultLink">Explore Your Quotes</a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>Made with ❤️ by QuoteKid - Find quotes that speak to you</p>
+            <p>© 2025 QuoteKid.com - All rights reserved</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quiz data
+            const questions = [
+                {
+                    question: "How do you start your day?",
+                    options: [
+                        { text: "With a motivational quote to set the tone", emoji: "🌅", points: { confidence: 2, wisdom: 1 } },
+                        { text: "By checking what's new and interesting online", emoji: "📱", points: { humor: 2, kindness: 1 } },
+                        { text: "With a moment of gratitude and reflection", emoji: "🙏", points: { wisdom: 2, kindness: 1 } },
+                        { text: "By hitting snooze as many times as possible", emoji: "😴", points: { humor: 2, confidence: 1 } }
+                    ]
+                },
+                {
+                    question: "What's your approach to challenges?",
+                    options: [
+                        { text: "Face them head-on with confidence", emoji: "💪", points: { confidence: 3 } },
+                        { text: "Find the humor in the situation", emoji: "😂", points: { humor: 3 } },
+                        { text: "Seek wisdom from others who've been there", emoji: "🧠", points: { wisdom: 3 } },
+                        { text: "Be kind to myself and take it one step at a time", emoji: "🌱", points: { kindness: 3 } }
+                    ]
+                },
+                {
+                    question: "What type of content do you share most often?",
+                    options: [
+                        { text: "Inspirational quotes and success stories", emoji: "✨", points: { confidence: 2, wisdom: 1 } },
+                        { text: "Funny memes and jokes", emoji: "🤣", points: { humor: 3 } },
+                        { text: "Thought-provoking articles and life lessons", emoji: "📚", points: { wisdom: 3 } },
+                        { text: "Heartwarming stories and acts of kindness", emoji: "💝", points: { kindness: 3 } }
+                    ]
+                },
+                {
+                    question: "Your friends would describe you as:",
+                    options: [
+                        { text: "Confident and ambitious", emoji: "🎯", points: { confidence: 3 } },
+                        { text: "The life of the party, always making people laugh", emoji: "🎭", points: { humor: 3 } },
+                        { text: "Wise beyond your years", emoji: "🦉", points: { wisdom: 3 } },
+                        { text: "Compassionate and understanding", emoji: "🤗", points: { kindness: 3 } }
+                    ]
+                },
+                {
+                    question: "What's your favorite way to relax?",
+                    options: [
+                        { text: "Setting and achieving small goals", emoji: "✅", points: { confidence: 2 } },
+                        { text: "Watching comedy shows or stand-up", emoji: "📺", points: { humor: 2 } },
+                        { text: "Reading philosophy or self-improvement books", emoji: "📖", points: { wisdom: 2 } },
+                        { text: "Spending quality time with loved ones", emoji: "👨‍👩‍👧‍👦", points: { kindness: 2 } }
+                    ]
+                }
+            ];
+            
+            // Results data
+            const results = {
+                confidence: {
+                    title: "The Confident Soul",
+                    description: "You're all about empowerment and self-belief! Your quotes will inspire you to take on the world with courage and determination. Keep that confidence shining!",
+                    icon: "💪",
+                    link: "confidence.html"
+                },
+                humor: {
+                    title: "The Joyful Spirit",
+                    description: "Laughter is your superpower! Your quotes will keep you smiling and remind you not to take life too seriously. After all, a day without laughter is a day wasted!",
+                    icon: "😂",
+                    link: "humor.html"
+                },
+                wisdom: {
+                    title: "The Thoughtful Sage",
+                    description: "You seek depth and meaning in everything. Your quotes will provide profound insights and timeless wisdom to guide you on your life's journey.",
+                    icon: "🧠",
+                    link: "wisdom.html"
+                },
+                kindness: {
+                    title: "The Compassionate Heart",
+                    description: "Kindness is your language! Your quotes will warm your heart and remind you of the power of compassion in making the world a better place.",
+                    icon: "💝",
+                    link: "kindness.html"
+                }
+            };
+            
+            // DOM elements
+            const quizHeader = document.getElementById('quizHeader');
+            const quizQuestions = document.getElementById('quizQuestions');
+            const progressBar = document.getElementById('progressBar');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDescription = document.getElementById('resultDescription');
+            const resultIcon = document.getElementById('resultIcon');
+            const resultLink = document.getElementById('resultLink');
+            const startQuizBtn = document.getElementById('startQuiz');
+            
+            // Quiz state
+            let currentQuestion = 0;
+            let score = { confidence: 0, humor: 0, wisdom: 0, kindness: 0 };
+            
+            // Initialize quiz
+            function initQuiz() {
+                // Hide start button and show first question
+                startQuizBtn.style.display = 'none';
+                document.querySelector('.progress-container').style.display = 'block';
+                showQuestion(0);
+            }
+            
+            // Show question
+            function showQuestion(index) {
+                // Clear previous question
+                quizQuestions.innerHTML = '';
+                
+                // Update progress
+                const progress = ((index) / questions.length) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                // Create question container
+                const questionContainer = document.createElement('div');
+                questionContainer.className = 'question-container active';
+                questionContainer.id = `question-${index}`;
+                
+                // Add question
+                const questionEl = document.createElement('div');
+                questionEl.className = 'question';
+                questionEl.textContent = questions[index].question;
+                questionContainer.appendChild(questionEl);
+                
+                // Add options
+                const optionsEl = document.createElement('div');
+                optionsEl.className = 'options';
+                
+                questions[index].options.forEach((option, i) => {
+                    const optionBtn = document.createElement('button');
+                    optionBtn.className = 'option-btn';
+                    optionBtn.innerHTML = `<span class="emoji">${option.emoji}</span> ${option.text}`;
+                    optionBtn.dataset.index = i;
+                    optionBtn.addEventListener('click', () => selectOption(optionBtn, index, i));
+                    optionsEl.appendChild(optionBtn);
+                });
+                
+                questionContainer.appendChild(optionsEl);
+                
+                // Add navigation buttons
+                const navEl = document.createElement('div');
+                navEl.className = 'quiz-navigation';
+                
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'nav-btn prev-btn';
+                prevBtn.textContent = '← Previous';
+                prevBtn.disabled = index === 0;
+                prevBtn.addEventListener('click', () => navigateToQuestion(index - 1));
+                
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'nav-btn next-btn';
+                nextBtn.textContent = index === questions.length - 1 ? 'See Results' : 'Next →';
+                nextBtn.disabled = true; // Disabled until an option is selected
+                nextBtn.addEventListener('click', () => {
+                    if (index === questions.length - 1) {
+                        showResults();
+                    } else {
+                        navigateToQuestion(index + 1);
+                    }
+                });
+                
+                navEl.appendChild(prevBtn);
+                navEl.appendChild(nextBtn);
+                questionContainer.appendChild(navEl);
+                
+                quizQuestions.appendChild(questionContainer);
+                
+                // Update current question
+                currentQuestion = index;
+            }
+            
+            // Select option
+            function selectOption(btn, questionIndex, optionIndex) {
+                // Remove selected class from all options
+                const options = document.querySelectorAll(`#question-${questionIndex} .option-btn`);
+                options.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                btn.classList.add('selected');
+                
+                // Enable next button
+                const nextBtn = document.querySelector(`#question-${questionIndex} .next-btn`);
+                nextBtn.disabled = false;
+                
+                // Store selected answer
+                const selectedOption = questions[questionIndex].options[optionIndex];
+                
+                // Update score
+                Object.keys(selectedOption.points).forEach(category => {
+                    score[category] += selectedOption.points[category];
+                });
+            }
+            
+            // Navigate to question
+            function navigateToQuestion(index) {
+                if (index >= 0 && index < questions.length) {
+                    showQuestion(index);
+                }
+            }
+            
+            // Show results
+            function showResults() {
+                // Hide quiz questions
+                quizQuestions.style.display = 'none';
+                document.querySelector('.progress-container').style.display = 'none';
+                
+                // Find highest scoring category
+                let maxScore = 0;
+                let resultCategory = 'confidence'; // Default
+                
+                Object.keys(score).forEach(category => {
+                    if (score[category] > maxScore) {
+                        maxScore = score[category];
+                        resultCategory = category;
+                    }
+                });
+                
+                // Show result
+                const result = results[resultCategory];
+                resultIcon.textContent = result.icon;
+                resultTitle.textContent = result.title;
+                resultDescription.textContent = result.description;
+                resultLink.href = result.link;
+                resultLink.textContent = `Explore ${result.title} Quotes`;
+                
+                // Show result container
+                resultContainer.style.display = 'block';
+                
+                // Scroll to result
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Event listeners
+            startQuizBtn.addEventListener('click', initQuiz);
+        });
+    </script>
+</body>
+</html>
+

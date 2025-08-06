@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn more about QuoteKid - A fun and inspiring platform for sharing and discovering quotes that brighten your day.">
+    <title>About QuoteKid - Spreading Joy Through Quotes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        /* About page specific styles */
+        .about-hero {
+            text-align: center;
+            padding: 4rem 0 3rem;
+            background: linear-gradient(135deg, rgba(107, 212, 205, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border-radius: 16px;
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #4DA8DA, #FFD166, #6BD4CD, #FF6B6B);
+        }
+        
+        .about-mascot {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        
+        .about-title {
+            color: #4DA8DA;
+            margin-bottom: 1rem;
+            font-size: 2.8rem;
+        }
+        
+        .about-subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            padding: 0 1.5rem;
+        }
+        
+        .about-section {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .about-section h2 {
+            color: #4DA8DA;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .about-section p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: #f9f9f9;
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: #4DA8DA;
+        }
+        
+        .feature-card h3 {
+            margin: 0 0 1rem;
+            color: #333;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+
+        
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(77, 168, 218, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .cta-title {
+            color: #4DA8DA;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-text {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .btn-cta {
+            display: inline-block;
+            background: #4DA8DA;
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(77, 168, 218, 0.3);
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(77, 168, 218, 0.4);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .about-title {
+                font-size: 2.2rem;
+            }
+            
+            .about-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .about-section {
+                padding: 1.8rem 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Quote<span>Kid</span></h1>
+                </a>
+                <div class="mascot">🌟</div>
+            </div>
+            <nav class="main-nav"><ul><li><a href="index.html">Home</a></li><li><a href="daily.html">Quote of the Day</a></li><li><a href="quiz.html">Quiz</a></li><li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="about-hero">
+            <div class="about-mascot">👋</div>
+            <h1 class="about-title">Welcome to QuoteKid!</h1>
+            <p class="about-subtitle">Spreading joy, inspiration, and wisdom one quote at a time.</p>
+        </section>
+        
+        <div class="about-content">
+            <section class="about-section">
+                <h2><span>📜</span> Our Story</h2>
+                <p>QuoteKid was born from a simple idea: that the right words at the right time can make all the difference. In a world that can sometimes feel overwhelming, we believe in the power of quotes to inspire, motivate, and bring a smile to your face.</p>
+                <p>Founded in 2025, our mission is to create a space where people of all ages can discover and share quotes that resonate with them. Whether you're looking for a daily dose of motivation, a good laugh, or words of wisdom, QuoteKid is here for you.</p>
+            </section>
+            
+            <section class="about-section">
+                <h2><span>✨</span> What Makes Us Special</h2>
+                <p>At QuoteKid, we're more than just a collection of quotes. We're a community of quote enthusiasts who believe in the power of words to change perspectives and brighten days.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Beautiful Design</h3>
+                        <p>Enjoy a clean, playful interface that makes discovering quotes a delightful experience.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Mobile-Friendly</h3>
+                        <p>Access your favorite quotes anytime, anywhere, on any device.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Easy to Explore</h3>
+                        <p>Find exactly what you're looking for with our intuitive category system.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Daily Inspiration</h3>
+                        <p>Start each day with our specially curated Quote of the Day.</p>
+                    </div>
+                </div>
+            </section>
+            
+
+            <section class="about-section">
+                <h2><span>💡</span> Our Philosophy</h2>
+                <p>We believe that words have power. A single quote can change someone's day, provide comfort in difficult times, or inspire action. That's why we're committed to curating a diverse collection of quotes that speak to people from all walks of life.</p>
+                <p>At QuoteKid, we value authenticity, positivity, and the belief that everyone has something valuable to share. Our platform is designed to be inclusive, welcoming, and above all, a source of joy and inspiration.</p>
+            </section>
+            
+            <div class="cta-section">
+                <h3 class="cta-title">Ready to Be Inspired?</h3>
+                <p class="cta-text">Join thousands of people who start their day with a dose of inspiration from QuoteKid.</p>
+                <a href="index.html" class="btn-cta">Explore Quotes</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made with ❤️ by QuoteKid - Spreading joy through words since 2025</p>
+            <p>© 2025 QuoteKid.com - All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
