@@ -9,7 +9,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/mobile-enhancements.css">
+    <!-- Favicon - Speech Bubble Emoji -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/icon-192.svg" sizes="192x192">
+    <link rel="icon" type="image/svg+xml" href="/icon-512.svg" sizes="512x512">
+    <link rel="apple-touch-icon" href="/icon-192.svg">
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.svg">
+    <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.svg">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4DA8DA">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="QuoteKid">
     <style>
         /* Humor-specific styles */
         .category-header {
@@ -295,6 +308,47 @@
     </style>
 </head>
 <body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+
+    <!-- Streak Counter -->
+    <div class="streak-counter">
+        <span class="streak-flame">🔥</span> 1 day streak!
+    </div>
+
+    <!-- Mobile Hamburger Menu -->
+    <button class="hamburger-menu" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav-menu">
+        <ul>
+            <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
+            <li><a href="daily.html"><span class="nav-icon">📅</span> Quote of the Day</a></li>
+            <li><a href="quiz.html"><span class="nav-icon">🎮</span> Quiz</a></li>
+            <li><a href="about.html"><span class="nav-icon">ℹ️</span> About</a></li>
+            <li style="border-top: 1px solid rgba(0,0,0,0.1); margin-top: 20px; padding-top: 20px;">
+                <strong style="color: var(--accent-blue); padding-left: 15px; display: block; margin-bottom: 10px;">Categories</strong>
+            </li>
+            <li><a href="confidence.html"><span class="nav-icon">💪</span> Confidence</a></li>
+            <li><a href="kindness.html"><span class="nav-icon">💖</span> Kindness</a></li>
+            <li><a href="humor.html"><span class="nav-icon">😂</span> Humor</a></li>
+            <li><a href="wisdom.html"><span class="nav-icon">🧠</span> Wisdom</a></li>
+            <li><a href="courage.html"><span class="nav-icon">🦁</span> Courage</a></li>
+            <li><a href="friendship.html"><span class="nav-icon">🤝</span> Friendship</a></li>
+            <li><a href="perseverance.html"><span class="nav-icon">💪</span> Perseverance</a></li>
+            <li><a href="creativity.html"><span class="nav-icon">🎨</span> Creativity</a></li>
+            <li><a href="gratitude.html"><span class="nav-icon">🙏</span> Gratitude</a></li>
+            <li><a href="success.html"><span class="nav-icon">🏆</span> Success</a></li>
+        </ul>
+    </nav>
+
     <header class="header">
         <div class="container">
             <div class="logo">
@@ -351,6 +405,28 @@
             <p>© 2025 QuoteKid.com - All rights reserved</p>
         </div>
     </footer>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="index.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="daily.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">📅</span>
+                <span>Daily</span>
+            </a>
+            <a href="quiz.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">🎮</span>
+                <span>Quiz</span>
+            </a>
+            <a href="about.html" class="bottom-nav-item">
+                <span class="bottom-nav-icon">ℹ️</span>
+                <span>About</span>
+            </a>
+        </div>
+    </nav>
 
     <style>
         .back-button-container {
@@ -464,6 +540,7 @@
             });
         });
     </script>
+    <script src="js/mobile-features.js" defer></script>
 </body>
 </html>
 
