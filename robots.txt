@@ -1,0 +1,11 @@
+# robots.txt for QuoteKid.com
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+
+# Sitemap location
+Sitemap: https://www.quotekid.com/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
