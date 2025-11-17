@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.quotekid.com/</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Daily Quote -->
+  <url>
+    <loc>https://www.quotekid.com/daily.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Quiz -->
+  <url>
+    <loc>https://www.quotekid.com/quiz.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Confidence -->
+  <url>
+    <loc>https://www.quotekid.com/confidence.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Kindness -->
+  <url>
+    <loc>https://www.quotekid.com/kindness.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Humor -->
+  <url>
+    <loc>https://www.quotekid.com/humor.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Wisdom -->
+  <url>
+    <loc>https://www.quotekid.com/wisdom.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Courage -->
+  <url>
+    <loc>https://www.quotekid.com/courage.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Friendship -->
+  <url>
+    <loc>https://www.quotekid.com/friendship.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Perseverance -->
+  <url>
+    <loc>https://www.quotekid.com/perseverance.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Creativity -->
+  <url>
+    <loc>https://www.quotekid.com/creativity.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Gratitude -->
+  <url>
+    <loc>https://www.quotekid.com/gratitude.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Category: Success -->
+  <url>
+    <loc>https://www.quotekid.com/success.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://www.quotekid.com/about.html</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
